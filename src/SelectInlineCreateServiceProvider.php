@@ -7,6 +7,10 @@ use Illuminate\Support\ServiceProvider;
 
 class SelectInlineCreateServiceProvider extends ServiceProvider
 {
+    protected $commands = [
+      Console\PublishCommand::class
+    ];
+
     /**
      * The application's route middleware.
      *
@@ -43,7 +47,7 @@ class SelectInlineCreateServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole() && $assets = $extension->assets()) {
             $this->publishes(
                 [$assets => public_path('vendor/laravel-admin-ext/select-inline-create')],
-                'select-inline-create'
+                'select-inline-create-assets'
             );
         }
 
@@ -59,6 +63,8 @@ class SelectInlineCreateServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->commands($this->commands);
+
         $this->registerRouteMiddleware();
     }
 
