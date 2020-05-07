@@ -1,0 +1,34 @@
+{
+    "name": "tokarskimarcin/laravel-admin-ext-select-inline-create",
+    "description": "Inline creating entity while in another form.",
+    "type": "library",
+    "keywords": ["laravel-admin", "extension", "select", "inline-create", "create"],
+    "homepage": "https://github.com/tokarskimarcin/laravel-admin-ext-select-inline-create",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Marcin Tokarski",
+            "email": "marcinxx1994@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.2.0",
+        "encore/laravel-admin": "~1.6"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~6.0",
+        "tokarskimarcin/laravel-admin-ext-modal-form": "^0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Encore\\SelectInlineCreate\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Encore\\SelectInlineCreate\\SelectInlineCreateServiceProvider"
+            ]
+        }
+    }
+}
