@@ -5,14 +5,14 @@ Use select field to create entity if not exists. Created entity is selected imme
 ## Requires
 - "php": ">=7.2.0",
 - "encore/laravel-admin": "~1.6"
-- "tokarskimarcin/laravel-admin-ext-modal-form": "0.1.*"
+- "tokarskimarcin/laravel-admin-ext-modal-form": "^0.1"
 
 ## Installation
 ### Publishing
 Execute command below to publish package. 
 It will copy vendor resources to your application public directory.
 ~~~
-php artisan vendor:publish --provider="Encore\SelectInlineCreate\SelectInlineCreateServiceProvider"
+php artisan admin:select-inline-create:publish
 ~~~
 ### Update
 To update/overwrite assets of package add ```--force``` option to publishing command.
