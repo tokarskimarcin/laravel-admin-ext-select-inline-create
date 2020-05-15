@@ -13,11 +13,12 @@
     ],
     "require": {
         "php": ">=7.2.0",
-        "encore/laravel-admin": "~1.6"
+        "encore/laravel-admin": "~1.6",
+        "tokarskimarcin/laravel-admin-ext-modal-form": "^0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "~6.0",
-        "tokarskimarcin/laravel-admin-ext-modal-form": "^0.1"
+        "tokarskimarcin/laravel-admin-ext-modal-form": "dev-master"
     },
     "autoload": {
         "psr-4": {
