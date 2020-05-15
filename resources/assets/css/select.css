@@ -1,5 +1,11 @@
+.select-inline-container{
+    display: flex;
+}
 .select-inline-button{
-    width: 4%;
+    width: 30px;
     padding-left: 0;
     padding-right: 0;
+}
+.select-inline-create{
+    flex-grow: 1;
 }
