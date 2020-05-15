@@ -5,6 +5,7 @@ namespace Encore\SelectInlineCreate\Form;
 
 
 use Encore\Admin\Facades\Admin;
+use Encore\Admin\Form\Field;
 use Encore\Admin\Form\Field\Select;
 use Encore\ModalForm\Form\ModalButton;
 use Encore\SelectInlineCreate\Exceptions\ParameterMissingException;
@@ -24,10 +25,16 @@ class SelectInlineCreate extends Select
      */
     protected $searchUrl = null;
 
+    /**
+     * @var ModalButton
+     */
+    protected $modalButton;
+
     public function __construct($column = '', $arguments = [])
     {
         parent::__construct($column, $arguments);
         $this->createRoute(url()->current());
+        $this->modalButton = new ModalButton('+', $this->createUrl);
     }
 
     public function createRoute(string $createRoute)
@@ -61,20 +68,27 @@ class SelectInlineCreate extends Select
         return $this;
     }
 
+    public function disable(): Field
+    {
+        $this->modalButton->disable();
+        return parent::disable();
+    }
+
     public function render()
     {
         if (empty($this->searchUrl)) {
             throw new ParameterMissingException(sprintf('`%s` missing from %s field. Use "setSearchUrl" or "ajax" method.',
                 'searchUrl', self::class));
         }
+        $this->modalButton->setHref($this->createUrl);
+        $this->modalButton->setClass('btn btn-success select-inline-button');
+        $this->addVariables([
+            'modalButton' => $this->modalButton->render()
+        ]);
 
         Admin::script(file_get_contents(public_path('/vendor/laravel-admin-ext/select-inline-create/js/select.js')));
         Admin::style(file_get_contents(public_path('/vendor/laravel-admin-ext/select-inline-create/css/select.css')));
-        $modalButton = new ModalButton('+', $this->createUrl);
-        $modalButton->setClass('btn btn-success select-inline-button');
-        $this->addVariables([
-            'modalButton' => $modalButton->render()
-        ]);
+
 
         $this->attribute('data-model-search-url', $this->searchUrl);
 
